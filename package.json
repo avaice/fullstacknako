@@ -4,6 +4,6 @@
     "nadesiko3-websocket": "^3.6.5"
   },
   "scripts": {
-    "start": "cnako3"
+    "start": "cnako3 ./src/server.nako3"
   }
 }
