@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>なでチャット</title>
+    <style>
+      p {
+        margin: 0;
+      }
+      body {
+        width: 100%;
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      #chatContent {
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 10px);
+        padding: 5px;
+        aspect-ratio: 4/3;
+        border: 1px solid #ccc;
+      }
+      #chatContent textarea {
+        flex: 1;
+        width: calc(100% - 20px);
+        resize: none;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        line-height: 1.5;
+        outline: none;
+      }
+      #chatContent form {
+        display: flex;
+      }
+      #chatContent input {
+        flex: 1;
+        padding: 5px;
+        font-size: 16px;
+      }
+
+      footer{
+        text-align: center;
+        margin-top: 20px;
+        font-size: 13px;
+        color:gray;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>なでチャット</h1>
+    <p>接続状況: <span id="status">読み込んでいます</span></p>
+
+    <div id="chatContent">
+      <textarea id="logs"></textarea>
+      <form id="form">
+        <input type="text" id="textinput"/>
+        <button>送信</button>
+      </form>
+    </div>
+    <footer>
+        <p>nadesiko3 on docker</p>
+    </footer>
+
+    <script
+      type="text/javascript"
+      src="https://nadesi.com/v3/cdn.php?v=3.3.71&f=release/wnako3.js&run"
+    ></script>
+    <script type="なでしこ">
+        名前リスト= ['なでしこ', 'ひまわり', 'さくら', 'あさがお', 'にんにく']
+        名前= 名前リスト[5の乱数]
+        状態DOM=「#status」のDOM要素取得。
+        フォームDOM=「#form」のDOM要素取得。
+        テキスト入力DOM=「#textinput」のDOM要素取得。
+        ログDOM=「#logs」のDOM要素取得。
+        WS接続完了時には、
+            状態DOMに「接続完了。あなたは{名前}です。」をDOMテキスト設定。
+            「{名前}>参加しました({今日} {今})」をWS送信。
+        ここまで。
+        WSエラー発生時には、
+            状態DOMに「エラーが発生しました。」をDOMテキスト設定。
+        ここまで。
+        WS受信時には、
+            ログDOMのテキスト取得して、Lに代入。
+            L=対象&改行&L。
+            ログDOMへLをテキスト設定。
+        ここまで。
+        「ws://localhost:3011」へWS接続。
+
+        フォームDOMの「submit」がDOMイベント発火した時には
+            対象イベントのDOMイベント処理停止。
+            テキスト入力DOMのテキスト取得して、Tに代入。
+            テキスト入力DOMに「」をテキスト設定。
+            「{名前}>{T}({今日} {今})」をWS送信。
+        ここまで。
+    </script>
+  </body>
+</html>

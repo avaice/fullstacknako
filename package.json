@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "nadesiko3": "^3.6.37",
+    "nadesiko3-websocket": "^3.6.5"
+  },
+  "scripts": {
+    "start": "cnako3"
+  }
+}
